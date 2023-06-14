@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<input id="demo" type="text"/>
+<input id="demo2"  type="date">
+    <button onclick="addTodo()">Add to do list</button>
+    <div id="todo-list"></div>
+    <script>
+        let todo1= [{
+            information: 'play footbal',
+            dueDate: '2023-10-5',
+            id: 'id1'
+        },
+        {
+            information: 'cook',
+            dueDate: '2023-10-5',
+            id: 'id2'
+            
+        },
+        {
+            information: 'run',
+            dueDate: '2023-10-5',
+            id: 'id3'
+        }];
+
+        render();
+
+        function addTodo(){
+            let textbox=document.getElementById("demo");
+            let information=textbox.value;
+            const id= new Date().getTime();
+
+            let datebox=document.getElementById("demo2");
+            let dueDate=datebox.value;
+
+        
+            todo1.push({
+                information:information,
+                dueDate:dueDate,
+                id:id
+    
+                
+
+            });
+
+            render();
+
+        }
+        function deleteTodo(event){
+            const deleteButton=event.target
+            const idDelete=deleteButton.id
+
+        }
+        function render(){
+       
+            document.getElementById('todo-list').innerHTML='';
+        todo1.forEach( function(todo){
+            let element=document.createElement('div');
+        element.innerText=todo.information + ' ' + todo.dueDate
+
+        const deleteButton=document.createElement("button")
+        deleteButton.innerText= 'delete'
+        deleteButton.style='margin:12px; border-radius: 20px; color: white; background-color: red; display: block; font-size:20px; border:none;'
+        deleteButton.onclick=deleteTodo;
+        deleteButton.id=todo.id;
+        element.appendChild(deleteButton); 
+
+        let todoList=document.getElementById("todo-list")
+        todoList.appendChild(element)
+            
+        })
+    }
+        
+        
+
+    </script>
+</body>
+</html>
